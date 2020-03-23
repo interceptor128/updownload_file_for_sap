@@ -6,10 +6,7 @@
 *& 処理概要    ：ファイルを読み込み、サーバーにアップロードする
 *& 　　　　　　　サーバーファイルをローカルにダウンロードする
 *&---------------------------------------------------------------------*
-REPORT ZTOOL_UP_DL_APPSERV_LOCALPC
-  NO STANDARD PAGE HEADING
-  LINE-COUNT 150
-  LINE-SIZE  150.
+REPORT ZTOOL_UP_DL_APPSERV_LOCALPC.
 
 *----------------------------------------------------------------------*
 *   構造 定義
@@ -476,7 +473,7 @@ FORM FRM_FILE_DOWNLOAD_UPLOAD  USING    PIF_LFILE   TYPE RLGRAP-FILENAME
       CALL FUNCTION 'GUI_DOWNLOAD'
         EXPORTING
           FILENAME = LDF_PCFILE
-          FILETYPE = 'ASC'
+          FILETYPE = 'BIN'
         TABLES
           DATA_TAB = LDT_TAB1
         EXCEPTIONS
@@ -520,7 +517,7 @@ FORM FRM_FILE_DOWNLOAD_UPLOAD  USING    PIF_LFILE   TYPE RLGRAP-FILENAME
     CALL FUNCTION 'GUI_UPLOAD'
       EXPORTING
         FILENAME                = LDF_PCFILE
-        FILETYPE                = 'ASC'
+        FILETYPE                = 'BIN'
       TABLES
         DATA_TAB                = LDT_TAB2
       EXCEPTIONS
@@ -585,8 +582,7 @@ ENDFORM.                    " FRM_FILE_DOWNLOAD_UPLOAD
 FORM DISPLAY_CONTROL .
 
   IF PR_LOCAL IS NOT INITIAL.
-    CLEAR P_APP1.
-    P_APP1 = 'H:\'.
+*   処理なし
   ENDIF.
 
 ENDFORM.                    " DISPLAY_CONTROL
